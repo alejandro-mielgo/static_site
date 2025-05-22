@@ -1,2 +1,2 @@
-python3 src/main.py "https://github.com/alejandro-mielgo/static_site/"
+python3 src/main.py "/static_site/"
 
