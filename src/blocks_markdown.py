@@ -29,8 +29,10 @@ def block_to_block_type(text:str) -> BlockType:
 
     lines = text.split('\n')
 
-    check_quote = [re.search(r'^> ',line.strip()) for line in lines]
-    if all(check is not None for check in check_quote):
+    if text.startswith(">"):
+        for line in lines:
+            if not line.startswith(">"):
+                return BlockType.PARAGRAPH
         return BlockType.QUOTE
 
     check_ul = [re.search(r'^- ',line.strip()) for line in lines]

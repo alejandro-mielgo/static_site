@@ -29,9 +29,6 @@ class TextNode:
         return f"TextNode({self.text}, {self.text_type}, {self.url})"
 
 
-# class LeafNode(HTMLNode):
-#     def __init__(self,tag,value,props=None):
-
 def text_node_to_html_node(text_node:TextNode) -> LeafNode:
     
     match text_node.text_type:
@@ -49,7 +46,7 @@ def text_node_to_html_node(text_node:TextNode) -> LeafNode:
             return LeafNode(tag="code",value=text_node.text)
 
         case TextType.LINK:
-            return LeafNode(tag="a",value=text_node.text)
+            return LeafNode(tag="a",value=text_node.text, props= {"href": text_node.url})
 
         case TextType.IMAGE:
             return LeafNode(tag="img", value="", props = {"src":text_node.url, "alt":text_node.text})
